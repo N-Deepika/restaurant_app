@@ -4,6 +4,7 @@ const cors  = require('cors')
 const restaurants = require('./routes/restaurants')
 const RestaurantsDB = require('./models/restaurantsDB')
 const ReviewDB = require('./models/reviewDB')
+const { urlencoded } = require('express')
 
 require('dotenv').config()
 const app = express()
@@ -12,6 +13,8 @@ const MongoClient = mongodb.MongoClient
 
 app.use(cors())
 app.use(express.json())
+app.use(express.urlencoded({ extended: false }))
+
 app.use("/api/v1/restaurants", restaurants)
 
 app.use("*",(req,res)=>{
@@ -23,7 +26,7 @@ app.use("*",(req,res)=>{
 MongoClient.connect(
     process.env.DB_CONNECTION_URI,{
        maxPoolSize: 50,
-        wtimeoutMS: 2500,
+       wtimeoutMS: 2500,
         useNewUrlParser: true,
     }
 ).catch(err => {

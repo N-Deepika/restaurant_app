@@ -2,8 +2,8 @@ const mongodb = require('mongodb')
 const ObjectId = mongodb.ObjectId
 let restaurants
 
-const RestaurantsDB =  {
- async injectDB(conn){
+class RestaurantsDB {
+   static async injectDB(conn){
      if(restaurants) return
      try{
          restaurants = await conn.db(process.env.RESTREVIEWS_NS).collection("restaurants")
@@ -12,9 +12,9 @@ const RestaurantsDB =  {
 
      }
  }
-}
 
- async function getRestaurants({
+
+ static async getRestaurants({
     filters = null,
     page = 0,
     restaurantsPerPage = 20
@@ -55,6 +55,7 @@ let queryCursor
       )
       return { restaurantsList: [], totalNumRestaurants: 0 }
     }
+}
 }
 
 module.exports = RestaurantsDB
