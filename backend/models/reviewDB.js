@@ -23,6 +23,7 @@ class ReviewDB  {
              restaurant_id: ObjectId(restaurantID)
          }
          
+         console.log(reviewDoc)
          return await reviews.insertOne(reviewDoc)
 
      } catch(err){
@@ -37,7 +38,7 @@ class ReviewDB  {
            
         { user_id : userId,
             _id: ObjectId(reviewId)},
-          {$set: {text:text, date:date}}
+          {$set: {text: text, date: date}}
       
   )
 }catch(e){
