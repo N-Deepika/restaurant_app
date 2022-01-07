@@ -27,7 +27,7 @@ class ReviewDB  {
 
      } catch(err){
          console.error(`Unable to add review, ${err}`)
-          return { error: err }
+          return { error: err.message }
      }
  }
 
@@ -57,7 +57,7 @@ class ReviewDB  {
    return deleteResponse
  }catch(e){
    console.error(`Unable to delete review, ${e}`)
-     return { error: e }
+     return { error: e.message }
  }
 }
 

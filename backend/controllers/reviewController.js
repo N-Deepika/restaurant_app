@@ -14,6 +14,7 @@ class ReviewController {
          const date = new Date()
          const ReviewResponse = await ReviewDB.addReview(restaurantId,name,user_id,review,date)
          res.json({ status: "success"}) 
+         next()
          
     }catch(e){
         res.status(500).json({ error: e.message })
